@@ -6,7 +6,7 @@
 /*   By: marudlof <marudlof@42.angouleme.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/10 16:17:41 by marudlof          #+#    #+#             */
-/*   Updated: 2026/10/07 16:11:36 by marudlof         ###   ########.fr       */
+/*   Updated: 2026/10/29 15:57:26 by marudlof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <ctime>
 #include <iostream>
 #include <string>
+#include <unistd.h>
 
 #define MAX_VAL 750
 
@@ -23,7 +24,7 @@ static void	testSubject(void)
 	Array<int>	numbers(MAX_VAL);
 	int*		mirror = new int[MAX_VAL];
 
-	srand(time(NULL));
+	srand(time(NULL) ^ ::getpid());
 	for (int i = 0; i < MAX_VAL; i++)
 	{
 		const int	value = rand();
@@ -31,6 +32,7 @@ static void	testSubject(void)
 		numbers[i] = value;
 		mirror[i] = value;
 	}
+		std::cout << "a\n" << std::endl;
 	//SCOPE
 	{
 		Array<int>	tmp = numbers;
@@ -66,6 +68,7 @@ static void	testSubject(void)
 	for (int i = 0; i < MAX_VAL; i++)
 		numbers[i] = rand();
 	delete [] mirror;
+	return ;
 }
 
 template <typename T>
